@@ -1,0 +1,24 @@
+{
+	"name":         "deit/stream",
+	"type":         "library",
+	"description":  "Library for streams",
+	"keywords":     ["stream"],
+	"homepage":     "http://www.digitaledgeit.com.au",
+	"authors": [
+		{
+			"name":     "James Newell",
+			"email":    "james@digitaledgeit.com.au"
+		}
+	],
+	"require": {
+		"php": "~5.3"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~3.7"
+	},
+	"autoload": {
+		"psr-0": {
+			"deit\\stream\\": "src/"
+		}
+	}
+}
