@@ -10,7 +10,7 @@ class NullInputStreamTest extends \PHPUnit_Framework_TestCase {
 
 	public function test_readFromInMemoryStream() {
 
-		$stream = new \deit\stream\NullInputStream();
+		$stream = new NullInputStream();
 
 		$this->assertTrue($stream->end());
 		$this->assertEquals('', $stream->read(5));

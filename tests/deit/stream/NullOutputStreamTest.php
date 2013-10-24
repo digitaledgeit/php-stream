@@ -10,7 +10,7 @@ class NullOutputStreamTest extends \PHPUnit_Framework_TestCase {
 
 	public function test_writeToInMemoryStream() {
 
-		$stream = new \deit\stream\NullOutputStream();
+		$stream = new NullOutputStream();
 
 		$stream->write('Hello');
 		$stream->write(' World!');

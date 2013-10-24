@@ -10,7 +10,7 @@ class PhpOutputStreamTest extends \PHPUnit_Framework_TestCase {
 
 	public function test_writeToInMemoryStream() {
 
-		$stream = new \deit\stream\PhpOutputStream(fopen('php://memory', 'w+'));
+		$stream = new PhpOutputStream(fopen('php://memory', 'w+'));
 
 		$this->assertFalse($stream->isClosed());
 

@@ -15,7 +15,7 @@ class PhpInputStreamTest extends \PHPUnit_Framework_TestCase {
 		fwrite($fh, 'Hello World!');
 		rewind($fh);
 
-		$stream = new \deit\stream\PhpInputStream($fh);
+		$stream = new PhpInputStream($fh);
 
 		$this->assertFalse($stream->isClosed());
 		$this->assertFalse($stream->end());
