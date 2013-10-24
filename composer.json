@@ -4,7 +4,7 @@
 	"description":  "Library for streams",
 	"keywords":     ["stream"],
 	"homepage":     "http://www.digitaledgeit.com.au",
-	"license":      "CC-BY-NC-ND-3.0 - Use in a commercial product is permitted, but sale of the library is not permitted.",
+	"license":      "CC-BY-NC-ND-3.0",
 	"authors": [
 		{
 			"name":     "James Newell",
