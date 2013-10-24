@@ -1,5 +1,5 @@
 {
-	"name":         "deit/stream",
+	"name":         "digitaledgeit/stream",
 	"type":         "library",
 	"description":  "Library for streams",
 	"keywords":     ["stream"],
