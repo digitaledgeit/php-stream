@@ -2,6 +2,8 @@
 
 namespace deit\stream;
 
+use Symfony\Component\Yaml\Exception\RuntimeException;
+
 /**
  * ANSI output stream
  * @author 	James Newell <james@digitaledgeit.com.au>
@@ -98,9 +100,9 @@ class AnsiOutputStream implements OutputStream {
 	 */
 	public function reset() {
 		if ($this->ansi) {
-		  $this->stream->write("\033[0m");
-		  $this->foreground = self::COLOUR_DEFAULT;
-		  $this->background = self::COLOUR_DEFAULT;
+			$this->stream->write("\033[0m");
+			$this->foreground = self::COLOUR_DEFAULT;
+			$this->background = self::COLOUR_DEFAULT;
 		}
 		return $this;
 	}
@@ -180,13 +182,13 @@ class AnsiOutputStream implements OutputStream {
 			foreach(explode("\n", $bytes) as $line) {
 				$output .= $prefix.$line.$suffix."\n";
 			}
-			$output .= "\x1b[2K";
 
 		} else {
 			$output = $bytes;
 		}
 
 		//FIXME: count argument shouldn't consider escape codes, implement that within this class by updating count by the # of escape characters inserted before count characters
+		if (!is_null($count)) throw new RuntimeException('Count is not supported at this time');
 		$this->stream->write($output, $count);
 		return $this;
 	}
