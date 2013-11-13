@@ -88,7 +88,7 @@ class AnsiOutputStream implements OutputStream {
 	 * @param 	OutputStream $stream
 	 */
 	public function __construct(OutputStream $stream) {
-		$this->ansi     = (DIRECTORY_SEPARATOR == '\\' && getenv('ANSICON') !== null) || (function_exists('posix_isatty') && posix_isatty(STDOUT));
+		$this->ansi     = (DIRECTORY_SEPARATOR == '\\' && getenv('ANSICON') !== false) || (function_exists('posix_isatty') && posix_isatty(STDOUT));
 		$this->stream   = $stream;
 	}
 
@@ -97,9 +97,11 @@ class AnsiOutputStream implements OutputStream {
 	 * @return  $this
 	 */
 	public function reset() {
-		$this->stream->write("\033[0m");
-		$this->foreground = self::COLOUR_DEFAULT;
-		$this->background = self::COLOUR_DEFAULT;
+		if ($this->ansi) {
+		  $this->stream->write("\033[0m");
+		  $this->foreground = self::COLOUR_DEFAULT;
+		  $this->background = self::COLOUR_DEFAULT;
+		}
 		return $this;
 	}
 
