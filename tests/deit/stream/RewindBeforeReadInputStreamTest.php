@@ -23,4 +23,18 @@ class RewindBeforeReadInputStreamTest extends \PHPUnit_Framework_TestCase {
 	
 	}
 
+	public function test_readOnlySome() {
+
+		$fh     = tmpfile();
+		$pis    = new PhpInputStream($fh);
+		$rbris  = new RewindBeforeReadInputStream($pis);
+
+		fwrite($fh, "Hello World!\n");
+		$this->assertEquals("Hello", $rbris->read(5));
+
+		fwrite($fh, "Lorem Ipsum\n");
+		$this->assertEquals(" World!\nLorem Ipsum\n", $rbris->read(100));
+
+	}
+
 } 
