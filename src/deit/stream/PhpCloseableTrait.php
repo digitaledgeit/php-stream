@@ -24,7 +24,7 @@ trait PhpCloseableTrait {
 		$this->assertIsNotClosed();
 
 		//closes stream
-		if (fclose($this->stream) === false) {
+		if (@fclose($this->stream) === false) {
 			throw new StreamException('Unable to close stream.');
 		}
 
