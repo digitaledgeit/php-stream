@@ -192,7 +192,7 @@ class AnsiOutputStream implements OutputStream {
 	/**
 	 * @inheritdoc
 	 */
-	public function writeln($bytes, $count = null) {
+	public function writeln($bytes = '', $count = null) {
 		$this->stream->write($bytes.PHP_EOL, $count);
 		return $this;
 	}
