@@ -172,16 +172,12 @@ class AnsiOutputStream implements OutputStream {
 	 */
 	public function write($bytes, $count = null) {
 
-
 		if ($this->ansi) {
 
-			$prefix = "\033[".self::$foregroundAttributes[$this->foreground].";".self::$backgroundAttributes[$this->background]."m\x1b[2K";
+			$prefix = "\033[".self::$foregroundAttributes[$this->foreground].";".self::$backgroundAttributes[$this->background]."m";
 			$suffix = "\033[0m";
 
-			$output = '';
-			foreach(explode("\n", $bytes) as $line) {
-				$output .= $prefix.$line.$suffix."\n";
-			}
+			$output = $prefix.$bytes.$suffix;
 
 		} else {
 			$output = $bytes;
@@ -196,7 +192,7 @@ class AnsiOutputStream implements OutputStream {
 	/**
 	 * @inheritdoc
 	 */
-	public function writeln($bytes, $count = null) {
+	public function writeln($bytes = '', $count = null) {
 		$this->stream->write($bytes.PHP_EOL, $count);
 		return $this;
 	}
