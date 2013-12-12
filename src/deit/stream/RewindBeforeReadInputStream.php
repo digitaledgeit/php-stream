@@ -48,15 +48,17 @@ class RewindBeforeReadInputStream implements InputStream {
 	public function read($count) {
 
 		//move to the position of the last read data
-		$this->stream->seek($this->offset);
+		$this->stream->seek($this->offset, Seekable::SEEK_SET);
 
 		//read the data and update the offset
 		$data = $this->stream->read($count);
 		$this->offset += strlen($data);
 
-		//seek to the end of the stream so any writes won't get written to the wrong place
-		// (especially important if not all available data was read)
-		$this->stream->seek(0, Seekable::SEEK_END);
+		//if we didn't read to the end of the stream, then seek to the end of the stream so any data written to the stream
+		//by another process won't write over un-read data
+		if (!$this->stream->end()) {
+			$this->stream->seek(0, Seekable::SEEK_END);
+		}
 
 		return $data;
 	}

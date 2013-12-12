@@ -37,4 +37,30 @@ class RewindBeforeReadInputStreamTest extends \PHPUnit_Framework_TestCase {
 
 	}
 
+	public function test_end() {
+
+		$fh     = tmpfile();
+		$pis    = new PhpInputStream($fh);
+		$rbris  = new RewindBeforeReadInputStream($pis);
+
+		$i = 1;
+		fwrite($fh, "Line $i");
+		while (!$rbris->end()) {
+
+			$line = $rbris->read(6);
+
+			if (!empty($line)) { //expect an empty string the last time (feof doesn't trigger until you try and read past the end)
+				$this->assertEquals("Line $i", $line);
+			}
+
+			++$i;
+
+			if ($i < 9) {
+				fwrite($fh, "Line $i");
+			}
+
+		}
+
+	}
+
 } 

@@ -12,7 +12,7 @@ trait PhpSeekableTrait {
 	 * @inheritdoc
 	 */
 	public function getOffset() {
-		if (($offset = ftell($this->stream)) == false) {
+		if (($offset = ftell($this->stream)) === false) {
 			throw new StreamException('Unable to determine the current offset');
 		}
 		return $offset;
@@ -22,7 +22,7 @@ trait PhpSeekableTrait {
 	 * @inheritdoc
 	 */
 	public function seek($offset, $from = self::SEEK_SET) {
-		if (fseek($this->stream, $offset, $from) != 0) {
+		if (fseek($this->stream, $offset, $from) === -1) {
 			throw new StreamException('Unable to seek to the offset');
 		};
 	}
