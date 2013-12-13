@@ -19,7 +19,7 @@ class StringOutputStream implements OutputStream {
 	 */
 	public function write($bytes, $count = null) {
 		
-		if ($count && $count < strlen($bytes)) {
+		if (!is_null($count) && $count <= strlen($bytes)) {
 			$this->data .= substr($bytes, 0, $count);
 		} else {
 			$this->data .= $bytes;
