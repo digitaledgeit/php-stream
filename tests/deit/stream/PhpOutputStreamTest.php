@@ -17,7 +17,7 @@ class PhpOutputStreamTest extends \PHPUnit_Framework_TestCase {
 		$stream->write('Hello');
 		$stream->write(' World!');
 
-		$fh = $stream->native();
+		$fh = $stream->getNativeStream();
 		rewind($fh);
 		$this->assertEquals('Hello World!', stream_get_contents($fh));
 

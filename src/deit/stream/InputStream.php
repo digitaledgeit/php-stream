@@ -9,7 +9,7 @@ namespace deit\stream;
 interface InputStream {
 
 	/**
-	 * Gets whether a read operation has tried to read beyond the end of the stream
+	 * Gets whether a read readyOperation has tried to read beyond the end of the stream
 	 * @return 	bool
 	 */
 	public function end();

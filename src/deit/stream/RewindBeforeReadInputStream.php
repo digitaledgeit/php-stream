@@ -3,7 +3,7 @@
 namespace deit\stream;
 
 /**
- * Stream that rewinds to the last know position before the next read operation
+ * Stream that rewinds to the last know position before the next read readyOperation
  * @author    James Newell <james@digitaledgeit.com.au>
  */
 class RewindBeforeReadInputStream implements InputStream {
@@ -33,6 +33,14 @@ class RewindBeforeReadInputStream implements InputStream {
 
 		$this->stream = $stream;
 		$this->offset = 0;
+	}
+
+	/**
+	 * Gets the inner stream
+	 * @return  InputStream
+	 */
+	public function getInnerStream() {
+		return $this->stream;
 	}
 
 	/**

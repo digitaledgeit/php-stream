@@ -18,7 +18,7 @@ class StreamUtil {
 		
 		if ($in instanceof PhpInputStream && $out instanceof PhpOutputStream) {
 			
-			while (!$in->end()) stream_copy_to_stream($in->native(), $out->native());
+			while (!$in->end()) stream_copy_to_stream($in->getPHPStream(), $out->getPHPStream());
 			
 		} else {
 			

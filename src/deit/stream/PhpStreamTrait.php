@@ -42,7 +42,7 @@ trait PhpStreamTrait {
 	 * @depreciated
 	 * @return bool|resource
 	 */
-	public function native() {
+	public function getNativeStream() {
 		return $this->stream;
 	}
 
