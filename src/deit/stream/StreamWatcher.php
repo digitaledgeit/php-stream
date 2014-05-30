@@ -63,13 +63,19 @@ class StreamWatcher {
 
 	/**
 	 * Watches the streams for changes
-	 * @param   int|null                $timeout            Block for the specified amount of time
+	 * @param   float|null                  $timeout            Block for the specified amount of seconds
 	 * @return  StreamWatcherStatus[]
 	 * @throws  \RuntimeException
 	 */
 	public function watch($timeout = null) {
 
-		$sec                    = $timeout;
+		if (is_null($timeout)) {
+			$sec    = null;
+			$usec   = null;
+		} else {
+			$sec    = floor($timeout);
+			$usec   = ($timeout - $sec)*1000000;
+		}
 
 		$ready                  = [];
 		$readyToReadStreams     = [];
@@ -92,7 +98,7 @@ class StreamWatcher {
 		}
 
 		//wait for the streams to be ready
-		if (($changed = stream_select($readyToReadStreams, $readyToWriteStreams , $readyToExceptStreams , $sec, $usec = 0)) !== false) {
+		if (($changed = stream_select($readyToReadStreams, $readyToWriteStreams , $readyToExceptStreams , $sec, $usec)) !== false) {
 
 			foreach ($this->statuses as $status) {
 				$operations = 0;

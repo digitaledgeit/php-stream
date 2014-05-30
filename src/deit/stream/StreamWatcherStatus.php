@@ -122,6 +122,14 @@ class StreamWatcherStatus {
 	}
 
 	/**
+	 * Get the context
+	 * @return  mixed|null
+	 */
+	public function getContext() {
+		return $this->context;
+	}
+
+	/**
 	 * Get the native stream
 	 * @return  resource
 	 */
